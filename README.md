@@ -23,14 +23,12 @@ Open port detector in Go
 ## Installation
 
 ```
-go get -u github/theodesp/find-port/...
+go get -u github.com/theodesp/find-port/...
 ```
 
 ## How To Use
 
-```bash
-
-```
+Run the tool to find a free port
 
 The code supports building under Go >= 1.9.
 
