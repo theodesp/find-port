@@ -1,0 +1,29 @@
+language: go
+
+os:
+ - linux
+
+before_install:
+ - make debs
+ - mkdir -p $TRAVIS_BUILD_DIR $GOPATH/src/github.com/theodesp
+ - test ! -d $GOPATH/src/github.com/theodesp/find-port && mv $TRAVIS_BUILD_DIR $GOPATH/src/github.com/theodesp/find-port || true
+
+# test on the two most recent releases and tip
+go:
+ - "1.9.x"
+ - "1.10.x"
+ - "1.11.x"
+ - "tip"
+
+matrix:
+ allow_failures:
+  - go: tip
+
+script:
+ - make test
+
+after_success:
+ - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+ email: false
