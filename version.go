@@ -1,3 +1,3 @@
 package findport
 
-const AppVersion = "0.0.1"
+const AppVersion = "1.0.0"

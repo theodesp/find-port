@@ -1,3 +1,5 @@
+version=1.0.0
+
 .PHONY: format
 format:
 	@find . -type f -name "*.go*" -print0 | xargs -0 gofmt -s -w
