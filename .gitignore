@@ -16,3 +16,6 @@
 .glide/
 .idea/
 /vendor
+
+# Build result
+dist/

@@ -1,0 +1,47 @@
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-go/ for more details
+version: 2
+jobs:
+  lint:
+    docker:
+      # https://hub.docker.com/r/circleci/golang/tags/
+      - image: circleci/golang:1.11
+    working_directory: ~/find-port
+    steps:
+      - checkout
+      - run: >
+          mkdir -p $GOPATH/bin;
+          export VER=1.10.2;
+          export NAME=golangci-lint-$VER-linux-amd64;
+          curl -sL https://github.com/golangci/golangci-lint/releases/download/v$VER/$NAME.tar.gz | tar -xzC $GOPATH/bin --transform s,$NAME/golangci-lint,golangci-lint, $NAME/golangci-lint
+      - run: golangci-lint run
+
+  deploy:
+    docker:
+      # https://hub.docker.com/r/circleci/golang/tags/
+      - image: circleci/golang:1.11
+    working_directory: ~/find-portg
+    steps:
+      - checkout
+      - run: go get -u github.com/mitchellh/gox github.com/tcnksm/ghr
+      - run: >
+          gox
+          -arch="amd64 arm" -os="darwin linux windows"
+          -parallel=2
+          -ldflags "-X findport.AppVersion=`git describe --tags`"
+          -output "dist/find-port-{{.OS}}-{{.Arch}}"
+          ./cmd
+      - run: ghr -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace `git describe --tags` dist/
+
+workflows:
+  version: 2
+  lint-and-deploy:
+    jobs:
+      - lint
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
