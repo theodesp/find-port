@@ -18,6 +18,10 @@ find-port
   <img src="https://codecov.io/gh/theodesp/find-port/branch/master/graph/badge.svg" />
 </a>
 
+<a href="https://circleci.com/gh/theodesp/find-port">
+  <img src="https://circleci.com/gh/theodesp/find-port.svg?style=svg" />
+</a>
+
 Open port detector in Go
 
 ## Installation
