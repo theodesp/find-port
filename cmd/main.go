@@ -32,5 +32,5 @@ func main()  {
 		log.Fatalf("Get available port failed with %v", err)
 	}
 
-	fmt.Printf("Found available port at: %v", openPort)
+	fmt.Printf("Found available port at: %v\n", openPort)
 }
