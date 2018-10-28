@@ -8,5 +8,16 @@
   ],
   "imageSize": 100,
   "commit": true,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "condemil",
+      "name": "Dmitry",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/722990?v=4",
+      "profile": "https://github.com/condemil",
+      "contributions": [
+        "infra",
+        "platform"
+      ]
+    }
+  ]
 }
