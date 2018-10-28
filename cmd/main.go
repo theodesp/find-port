@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	port int
+	AppVersion = "dev"
 	version bool
 )
 func init()  {
@@ -23,7 +23,7 @@ func init()  {
 func main()  {
 	flag.Parse()
 	if version {
-		fmt.Println(findport.AppVersion)
+		fmt.Println(AppVersion)
 		os.Exit(0)
 	}
 
