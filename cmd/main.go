@@ -1,26 +1,27 @@
 package main
 
 import (
-	"fmt"
 	"flag"
-	"math/rand"
-	"time"
-	"os"
-	"github.com/theodesp/find-port"
+	"fmt"
 	"log"
+	"math/rand"
+	"os"
+	"time"
+
+	"github.com/theodesp/find-port"
 )
 
 var (
 	AppVersion = "dev"
-	version bool
+	version    bool
 )
-func init()  {
+
+func init() {
 	rand.Seed(time.Now().Unix())
 	flag.BoolVar(&version, "version", false, "output version and exit")
 }
 
-
-func main()  {
+func main() {
 	flag.Parse()
 	if version {
 		fmt.Println(AppVersion)
